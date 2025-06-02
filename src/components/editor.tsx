@@ -10,7 +10,7 @@ import { Navbar } from "@/components/navbar";
 import { FileManagement, type FileNode } from "@/components/file-management";
 import { CodeEditor } from "@/components/code-editor";
 import { Preview } from "@/components/preview";
-import { Terminal } from "@/components/terminal";
+import { DockerTerminal } from "@/components/terminal-docker";
 
 const initialFiles: FileNode[] = [
   {
@@ -210,7 +210,12 @@ export function Editor() {
 
                   {/* Terminal */}
                   <ResizablePanel defaultSize={30} minSize={20}>
-                    <Terminal />
+                    <DockerTerminal
+                      workspaceId="demo-workspace"
+                      onContainerReady={(containerId) => {
+                        console.log("Container ready:", containerId);
+                      }}
+                    />{" "}
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </ResizablePanel>

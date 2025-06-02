@@ -2,29 +2,46 @@
   "name": "dockcollab",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev": "concurrently \"pnpm next\" \"pnpm backend\"",
+    "next": "next dev",
+    "backend": "tsx src/backend/server.ts"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dockerode": "^4.0.6",
+    "express": "^5.1.0",
     "next": "15.3.3",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "uuid": "^11.1.0",
+    "ws": "^8.18.2",
     "xterm": "^5.3.0",
     "xterm-addon-fit": "^0.8.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/cors": "^2.8.18",
+    "@types/dockerode": "^3.3.39",
+    "@types/express": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "concurrently": "^9.1.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "nodemon": "^3.1.10",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^5"
   }
 }

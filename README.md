@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Running with Docker
 
-## Getting Started
+You can run this project in a containerized environment using Docker and Docker Compose. This setup uses Node.js version **22.14.0** and pnpm version **10.4.1** as specified in the Dockerfile.
 
-First, run the development server:
+### Build and Start the App
+
+First, ensure you have Docker and Docker Compose installed. Then, from the project root, run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker compose up --build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will build the Docker image and start the Next.js app in a container.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- The app will be available at [http://localhost:3000](http://localhost:3000).
+- The container exposes port **3000**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Configuration Notes
 
-## Learn More
+- No environment variables are required by default, but you can add a `.env` file and uncomment the `env_file` line in `docker-compose.yaml` if needed for your setup.
+- The Docker Compose service is named `typescript-app` and uses the Dockerfile at `./docker/next-env.DockerFile`.
+- The app runs as a non-root user for improved security.
 
-To learn more about Next.js, take a look at the following resources:
+### Project-specific Docker Details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Node.js version:** 22.14.0
+- **pnpm version:** 10.4.1
+- **Exposed port:** 3000
+- **Service name:** typescript-app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For any custom configuration, update the `docker-compose.yaml` or Dockerfile as needed for your environment.
